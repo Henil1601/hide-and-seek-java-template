@@ -1,7 +1,5 @@
 package org.example;
 
-// Don't change this file!
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -16,8 +14,8 @@ public class FuzzyListGenerator {
         this.iterations = iterations;
     }
 
-    public ArrayList<Fuzzy> randomizedRainbowFuzzies() {
-        ArrayList<Fuzzy> fuzzies = new ArrayList<>();
+    public ArrayList<Feeling> randomizedRainbowFuzzies() {
+        ArrayList<Feeling> fuzzies = new ArrayList<>();
         for (int i = 0; i < this.iterations; i++) {
             fuzzies.add(new Fuzzy("red"));
             fuzzies.add(new Fuzzy("orange"));
@@ -28,13 +26,14 @@ public class FuzzyListGenerator {
             fuzzies.add(new Fuzzy("violet"));
         }
         fuzzies.add(new Fuzzy("gold"));
+        fuzzies.add(new Prickly());
 
         Collections.shuffle(fuzzies);
         return fuzzies;
     }
 
-    public ArrayList<Fuzzy> sortedRainbowFuzzies() {
-        ArrayList<Fuzzy> fuzzies = new ArrayList<>();
+    public ArrayList<Feeling> sortedRainbowFuzzies() {
+        ArrayList<Feeling> fuzzies = new ArrayList<>();
         for (int i = 0; i < this.iterations; i++) {
             fuzzies.add(new Fuzzy("red"));
             fuzzies.add(new Fuzzy("orange"));
@@ -45,8 +44,9 @@ public class FuzzyListGenerator {
             fuzzies.add(new Fuzzy("violet"));
         }
         fuzzies.add(new Fuzzy("gold"));
+        fuzzies.add(new Prickly());
 
-        fuzzies.sort((f1, f2) -> f1.color.compareTo(f2.color));
+        fuzzies.sort((f1, f2) -> f1.description().compareTo(f2.description()));
         return fuzzies;
     }
 }

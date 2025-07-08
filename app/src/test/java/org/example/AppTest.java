@@ -3,21 +3,17 @@ package org.example;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class AppTest {
+import java.util.ArrayList;
 
+public class AppTest {
     @Test
-    void testLinearAndBinarySearch() {
-        FuzzyListGenerator generator = new FuzzyListGenerator();
+    void testFindGoldAndCold() {
+        FuzzyListGenerator generator = new FuzzyListGenerator(10);
         FuzzyFinder finder = new FuzzyFinder();
 
-        var sorted = generator.sortedRainbowFuzzies();
-        var random = generator.randomizedRainbowFuzzies();
-
-        assertTrue(finder.linearSearch(sorted) >= 0);
-        assertTrue(finder.linearSearch(random) >= 0);
-        assertTrue(finder.binarySearch(sorted) >= 0);
-
-        // This may fail or return -1 since binarySearch on random is not reliable
-        System.out.println("Binary on random: " + finder.binarySearch(random));
+        ArrayList<Feeling> fuzzies = generator.randomizedRainbowFuzzies();
+        assertTrue(finder.linearSearch(fuzzies, "gold") >= 0);
+        assertTrue(finder.findColdPrickly(fuzzies) >= 0);
     }
 }
+

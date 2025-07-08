@@ -7,17 +7,20 @@ public class App {
         FuzzyListGenerator generator = new FuzzyListGenerator();
         FuzzyFinder finder = new FuzzyFinder();
 
-        ArrayList<Fuzzy> sortedFuzzies = generator.sortedRainbowFuzzies();
-        ArrayList<Fuzzy> randomFuzzies = generator.randomizedRainbowFuzzies();
+        ArrayList<Feeling> sortedList = generator.sortedRainbowFuzzies();
+        ArrayList<Feeling> randomList = generator.randomizedRainbowFuzzies();
 
-        int testOne = finder.linearSearch(sortedFuzzies);
-        int testTwo = finder.binarySearch(sortedFuzzies);
-        int testThree = finder.linearSearch(randomFuzzies);
-        int testFour = finder.binarySearch(randomFuzzies);
+        int test1 = finder.linearSearch(sortedList, "gold");
+        int test2 = finder.binarySearch(sortedList, "gold");
+        int test3 = finder.linearSearch(randomList, "gold");
+        int test4 = finder.binarySearch(randomList, "gold");
 
-        System.out.println("Linear Search (Sorted): " + testOne);
-        System.out.println("Binary Search (Sorted): " + testTwo);
-        System.out.println("Linear Search (Random): " + testThree);
-        System.out.println("Binary Search (Random): " + testFour);
+        int coldIndex = finder.findColdPrickly(randomList);
+
+        System.out.println("Sorted (Linear) gold: " + test1);
+        System.out.println("Sorted (Binary) gold: " + test2);
+        System.out.println("Random (Linear) gold: " + test3);
+        System.out.println("Random (Binary) gold: " + test4);
+        System.out.println("Cold prickly index: " + coldIndex);
     }
 }

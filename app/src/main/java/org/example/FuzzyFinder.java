@@ -4,36 +4,36 @@ import java.util.ArrayList;
 
 public class FuzzyFinder {
 
-    // Linear Search
-    public int linearSearch(ArrayList<Fuzzy> fuzzies) {
-        for (int i = 0; i < fuzzies.size(); i++) {
-            if (fuzzies.get(i).color.equals("gold")) {
+    public int linearSearch(ArrayList<Feeling> list, String target) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).description().equals(target)) {
                 return i;
             }
         }
-        return -1; // not found
+        return -1;
     }
 
-    // Binary Search
-    public int binarySearch(ArrayList<Fuzzy> fuzzies) {
-        int low = 0;
-        int high = fuzzies.size() - 1;
+    public int binarySearch(ArrayList<Feeling> list, String target) {
+        int left = 0;
+        int right = list.size() - 1;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            String midColor = fuzzies.get(mid).color;
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            String current = list.get(mid).description();
 
-            int comparison = midColor.compareTo("gold");
-
+            int comparison = current.compareTo(target);
             if (comparison == 0) {
                 return mid;
             } else if (comparison < 0) {
-                low = mid + 1;
+                left = mid + 1;
             } else {
-                high = mid - 1;
+                right = mid - 1;
             }
         }
+        return -1;
+    }
 
-        return -1; // not found
+    public int findColdPrickly(ArrayList<Feeling> list) {
+        return linearSearch(list, "Pokey!");
     }
 }
